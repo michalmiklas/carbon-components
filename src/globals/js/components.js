@@ -34,3 +34,4 @@ export { default as SideNav } from '../../components/ui-shell/side-nav';
 export { default as HeaderSubmenu } from '../../components/ui-shell/header-submenu';
 export { default as HeaderNav } from '../../components/ui-shell/header-nav';
 export { default as ProductSwitcher } from '../../components/ui-shell/product-switcher';
+export { default as NavigationMenu } from '../../components/ui-shell/navigation-menu';
