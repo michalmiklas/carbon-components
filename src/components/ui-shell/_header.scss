@@ -142,6 +142,10 @@
     outline: none;
   }
 
+  a.#{$prefix}--header__menu-item--selected[role='menuitem'] {
+    font-weight: 600;
+  }
+
   .#{$prefix}--header__submenu {
     position: relative;
   }

@@ -1,10 +1,10 @@
 import on from '../../globals/js/misc/on';
 import settings from '../../globals/js/settings';
-import Tab from '../tabs/tabs';
+import ContentSwitcher from '../tabs/tabs';
 
 const toArray = arrayLike => Array.prototype.slice.call(arrayLike);
 
-export default class HeaderNav extends Tab {
+export default class HeaderNav extends ContentSwitcher {
   constructor(element, options) {
     super(element, options);
     this.manage(on(this.element, 'keydown', this._handleKeyDown));
@@ -70,11 +70,11 @@ export default class HeaderNav extends Tab {
    */
   static get options() {
     const { prefix } = settings;
-    return Object.assign(Object.create(Tab.options), {
+    return Object.assign(Object.create(ContentSwitcher.options), {
       selectorInit: '[data-header-nav]',
       selectorNavKind: '[data-header-nav-kind]',
-      selectorMenu: `.${prefix}--header__menu-bar`,
       selectorButton: `.${prefix}--header__menu-item`,
+      classActive: `${prefix}--header__menu-item--selected`,
       selectorSubmenu: `.${prefix}--header__submenu`,
       selectorSubmenuLink: `.${prefix}--header__menu-title`,
       selectorSubmenuItem: `.${prefix}--header__menu-title > .${prefix}--header__menu-item`,
