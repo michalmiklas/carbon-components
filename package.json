@@ -171,12 +171,12 @@
     "umd/**/*"
   ],
   "scripts": {
-    "build": "gulp build",
+    "build": "gulp build -e",
     "build-dev": "gulp build:dev",
     "build-dev-rollup": "gulp build:dev --rollup",
     "build-dev-rollup-experimental": "gulp build:dev --rollup -e",
     "ci-check": "sh ./tools/ci-check.sh",
-    "commitmsg": "commitlint -e $GIT_PARAMS",
+    "commitmsg": "commitlint -E GIT_PARAMS",
     "dev": "gulp serve",
     "lint": "eslint .",
     "lint:staged": "eslint",

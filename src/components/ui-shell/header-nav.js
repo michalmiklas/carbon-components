@@ -1,13 +1,10 @@
-import mixin from '../../globals/js/misc/mixin';
-import createComponent from '../../globals/js/mixins/create-component';
-import initComponentBySearch from '../../globals/js/mixins/init-component-by-search';
-import handles from '../../globals/js/mixins/handles';
 import on from '../../globals/js/misc/on';
 import settings from '../../globals/js/settings';
+import Tab from '../tabs/tabs';
 
 const toArray = arrayLike => Array.prototype.slice.call(arrayLike);
 
-export default class HeaderNav extends mixin(createComponent, initComponentBySearch, handles) {
+export default class HeaderNav extends Tab {
   constructor(element, options) {
     super(element, options);
     this.manage(on(this.element, 'keydown', this._handleKeyDown));
@@ -73,13 +70,15 @@ export default class HeaderNav extends mixin(createComponent, initComponentBySea
    */
   static get options() {
     const { prefix } = settings;
-    return {
+    return Object.assign(Object.create(Tab.options), {
       selectorInit: '[data-header-nav]',
       selectorNavKind: '[data-header-nav-kind]',
+      selectorMenu: `.${prefix}--header__menu-bar`,
+      selectorButton: `.${prefix}--header__menu-item`,
       selectorSubmenu: `.${prefix}--header__submenu`,
       selectorSubmenuLink: `.${prefix}--header__menu-title`,
       selectorSubmenuItem: `.${prefix}--header__menu-title > .${prefix}--header__menu-item`,
-    };
+    });
   }
 
   /**

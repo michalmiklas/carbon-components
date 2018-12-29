@@ -276,6 +276,16 @@ gulp.task('sass:compiled', () => {
       .src('src/globals/scss/styles.scss')
       .pipe(sourcemaps.init())
       .pipe(
+        header(`
+			$feature-flags: (
+			  components-x: ${useExperimentalFeatures},
+			  breaking-changes-x: ${useBreakingChanges},
+			  grid: ${useExperimentalFeatures},
+			  ui-shell: ${useExperimentalFeatures},
+			);
+		  `)
+      )
+      .pipe(
         sass({
           outputStyle: prod ? 'compressed' : 'expanded',
         }).on('error', sass.logError)
