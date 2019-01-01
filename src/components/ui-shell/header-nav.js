@@ -1,6 +1,6 @@
 import on from '../../globals/js/misc/on';
 import settings from '../../globals/js/settings';
-import ContentSwitcher from '../tabs/tabs';
+import ContentSwitcher from '../content-switcher/content-switcher';
 
 const toArray = arrayLike => Array.prototype.slice.call(arrayLike);
 

@@ -158,8 +158,18 @@ export default class NavigationMenu extends NavigationMenuPanel {
     if (matchesShellNavLink) {
       [...this.element.querySelectorAll(this.options.selectorShellNavLinkCurrent)].forEach(el => {
         el.classList.remove(this.options.classShellNavItemActive, this.options.classShellNavLinkCurrent);
+        [...el.ownerDocument.querySelectorAll(el.dataset.target)].forEach(targetElement => {
+          targetElement.setAttribute('hidden', '');
+          targetElement.setAttribute('aria-hidden', 'true');
+        });
       });
-      matchesShellNavLink.closest(this.options.selectorShellNavItem).classList.add(this.options.classShellNavItemActive);
+      const selItem = matchesShellNavLink.closest(this.options.selectorShellNavItem);
+      selItem.classList.add(this.options.classShellNavItemActive);
+
+      [...selItem.ownerDocument.querySelectorAll(selItem.dataset.target)].forEach(targetElement => {
+        targetElement.removeAttribute('hidden');
+        targetElement.setAttribute('aria-hidden', 'false');
+      });
     }
   };
 
@@ -190,6 +200,10 @@ export default class NavigationMenu extends NavigationMenuPanel {
     return Object.assign(Object.create(NavigationMenuPanel.options), {
       selectorInit: '[data-navigation-menu]',
       attribInitTarget: 'data-navigation-menu-target',
+
+      selectorButton: `.${prefix}--navigation-item`,
+      classActive: `${prefix}--navigation-item--active`,
+
       selectorShellNavSubmenu: `.${prefix}--navigation__category-toggle`,
       selectorShellNavLink: `.${prefix}--navigation-link`,
       selectorShellNestedNavLink: `.${prefix}--navigation__category-item > a.${prefix}--navigation-link`,
