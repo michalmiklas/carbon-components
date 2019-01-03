@@ -108,7 +108,9 @@ class FileUploader extends mixin(createComponent, initComponentBySearch, evented
     const HTMLString = toArray(this.input.files)
       .map(file => this._filenamesHTML(file.name, this.inputId))
       .join('');
-
+    if (!this.input.multiple) {
+      container.innerHTML = '';
+    }
     container.insertAdjacentHTML('afterbegin', HTMLString);
   }
 
